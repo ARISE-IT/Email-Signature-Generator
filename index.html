@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Signature Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="logo-header">
+    <img src="Arise-Logo-Black.png" alt="ARISE Church Logo">
+    <div class="subtitle">Email Signature Generator</div>
+  </div>
+
+  <!-- Input fields container -->
+  <div class="form-fields">
+    <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
+    <label>Role: <input id="role" type="text" oninput="updateSignature()"></label> <!-- Renamed from Title to Role -->
+    
+    <!-- New Campus field added here -->
+    <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label> <!-- Campus field added here -->
+    
+    <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
+    <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
+    <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
+  </div>
+
+  <!-- Signature preview -->
+  <div id="signature">
+    <div class="sig-details" id="sigDetails">
+      <strong>Your Name</strong><br>
+      Your Role<br>
+      📞 Phone<br>
+      📧 email@example.com<br>
+      📍 Your Location
+    </div>
+    <div class="sig-logo">
+      <img src="Sig%20Logo.png" width="400" alt="Signature Logo">
+    </div>
+  </div>
+
+  <button id="copyBtn" onclick="copySignature()">Copy HTML</button>
+
+  <script>
+    function updateSignature() {
+      const name = document.getElementById('fullName').value || 'Your Name';
+      const role = document.getElementById('role').value || 'Your Role';  // Updated to Role
+      const campus = document.getElementById('campus').value.trim();  // Getting Campus value
+      const phone = document.getElementById('phone').value || 'Phone';
+      const email = document.getElementById('email').value || 'email@example.com';
+      const location = document.getElementById('location').value || 'Your Location';
+
+      // Update Campus text: Always starts with "Arise in" followed by the campus name
+      const campusText = campus ? `Arise in ${campus}` : '';
+
+      // Update the signature details
+      document.getElementById('sigDetails').innerHTML = `
+        <strong>${name}</strong><br>
+        ${role}<br>
+        ${campusText}<br> <!-- Displaying the campus text -->
+        📞 ${phone}<br>
+        📧 ${email}<br>
+        📍 ${location}
+      `;
+    }
+
+    function copySignature() {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = document.getElementById("signature").innerHTML;
+      document.body.appendChild(tempDiv);
+
+      const range = document.createRange();
+      range.selectNode(tempDiv);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+
+      try {
+        document.execCommand("copy");
+        alert("Signature copied to clipboard!");
+      } catch (err) {
+        alert("Failed to copy. Try selecting and copying manually.");
+      }
+
+      document.body.removeChild(tempDiv);
+    }
+  </script>
+</body>
+</html>
