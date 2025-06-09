@@ -6,57 +6,77 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="logo-header">
-    <img src="Arise-Logo-Black.png" alt="ARISE Church Logo">
-    <div class="subtitle">Email Signature Generator</div>
+
+  <!-- Passcode Prompt -->
+  <div id="passcodePrompt">
+    <h2>Enter Passcode to Continue</h2>
+    <input type="password" id="passcodeInput" placeholder="Enter passcode" />
+    <button onclick="checkPasscode()">Submit</button>
+    <p id="error" style="color: red;"></p>
   </div>
 
-  <!-- Input fields container -->
-  <div class="form-fields">
-    <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
-    <label>Role: <input id="role" type="text" oninput="updateSignature()"></label> <!-- Renamed from Title to Role -->
-    
-    <!-- New Campus field added here -->
-    <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label> <!-- Campus field added here -->
-    
-    <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
-    <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
-    <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
-  </div>
-
-  <!-- Signature preview -->
-  <div id="signature">
-    <div class="sig-details" id="sigDetails">
-      <strong>Your Name</strong><br>
-      Your Role<br>
-      📞 Phone<br>
-      📧 email@example.com<br>
-      📍 Your Location
+  <!-- Main Content Hidden Until Passcode is Correct -->
+  <div id="mainContent">
+    <div class="logo-header">
+      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo">
+      <div class="subtitle">Email Signature Generator</div>
     </div>
-    <div class="sig-logo">
-      <img src="Sig%20Logo.png" width="400" alt="Signature Logo">
-    </div>
-  </div>
 
-  <button id="copyBtn" onclick="copySignature()">Copy HTML</button>
+    <div class="form-fields">
+      <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
+      <label>Role: <input id="role" type="text" oninput="updateSignature()"></label>
+      <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label>
+      <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
+      <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
+      <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
+    </div>
+
+    <div id="signature">
+      <div class="sig-details" id="sigDetails">
+        <strong>Your Name</strong><br>
+        <em>Your Role</em><br>
+        Arise in Campus<br>
+        📞 Phone<br>
+        📧 email@example.com<br>
+        📍 Your Location
+      </div>
+      <div class="sig-logo">
+        <img src="Sig%20Logo.png" width="400" alt="Signature Logo">
+      </div>
+    </div>
+
+    <button id="copyBtn" onclick="copySignature()">Copy HTML</button>
+  </div>
 
   <script>
+    const correctPasscode = "1234"; // Change to your preferred passcode
+
+    function checkPasscode() {
+      const input = document.getElementById("passcodeInput").value;
+      const errorText = document.getElementById("error");
+
+      if (input === correctPasscode) {
+        document.getElementById("passcodePrompt").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      } else {
+        errorText.textContent = "Incorrect passcode. Please try again.";
+      }
+    }
+
     function updateSignature() {
       const name = document.getElementById('fullName').value || 'Your Name';
-      const role = document.getElementById('role').value || 'Your Role';  // Updated to Role
-      const campus = document.getElementById('campus').value.trim();  // Getting Campus value
+      const role = document.getElementById('role').value || 'Your Role';
+      const campus = document.getElementById('campus').value.trim();
       const phone = document.getElementById('phone').value || 'Phone';
       const email = document.getElementById('email').value || 'email@example.com';
       const location = document.getElementById('location').value || 'Your Location';
 
-      // Update Campus text: Always starts with "Arise in" followed by the campus name
       const campusText = campus ? `Arise in ${campus}` : '';
 
-      // Update the signature details
       document.getElementById('sigDetails').innerHTML = `
         <strong>${name}</strong><br>
-        ${role}<br>
-        ${campusText}<br> <!-- Displaying the campus text -->
+        <em>${role}</em><br>
+        ${campusText}<br>
         📞 ${phone}<br>
         📧 ${email}<br>
         📍 ${location}
