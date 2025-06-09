@@ -5,6 +5,39 @@ body {
   color: black;
 }
 
+/* Passcode Prompt Styling */
+#passcodePrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#passcodePrompt input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 200px;
+  font-size: 16px;
+}
+
+#passcodePrompt button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#passcodePrompt button:hover {
+  background-color: #45a049;
+}
+
+#mainContent {
+  display: none;
+}
+
 .logo-header {
   text-align: left;
   margin-bottom: 40px;
@@ -72,4 +105,4 @@ input {
 
 #copyBtn:hover {
   background-color: #45a049;
-} 
+}
