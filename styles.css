@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background-color: white;
+  color: black;
+}
+
+.logo-header {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.logo-header img {
+  width: 400px;
+  max-width: 90vw;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+}
+
+input {
+  padding: 8px;
+  margin-top: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#signature {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background: #f9f9f9;
+  max-width: 600px;
+}
+
+.sig-details {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.sig-logo img {
+  width: 400px;
+  height: auto;
+}
+
+#copyBtn {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#copyBtn:hover {
+  background-color: #45a049;
+} 
