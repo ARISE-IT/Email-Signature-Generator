@@ -5,6 +5,7 @@ body {
   color: black;
 }
 
+/* Passcode Prompt Styling */
 #passcodePrompt {
   display: flex;
   flex-direction: column;
@@ -31,6 +32,10 @@ body {
 
 #passcodePrompt button:hover {
   background-color: #45a049;
+}
+
+#mainContent {
+  display: none;
 }
 
 .logo-header {
