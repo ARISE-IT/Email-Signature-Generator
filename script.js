@@ -33,15 +33,16 @@ function updateSignature() {
   if (scheduleLines.length > 0) {
     workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
   }
-  document.getElementById('sigDetails').innerHTML = `
-    <strong>${name}</strong><br>
-    <em>${role}</em><br>
-    ${campusText}<br><br>
-    📞 ${phone}<br>
-    📧 ${email}<br>
-    📍 ${location}
-    ${workSchedule}
-  `;
+document.getElementById('sigDetails').innerHTML = `
+  <strong>${name}</strong><br>
+  <em>${role}</em><br>
+  ${campusText}<br><br>
+  📞 ${phone}<br>
+  📧 ${email}<br>
+  📍 ${location}<br><br>
+  ${scheduleLines.length > 0 ? `<strong>Days Working:</strong><br>${scheduleLines.join('<br>')}` : ''}
+`;
+  
 }
 function formatTime(time) {
   if (!time) return '';
