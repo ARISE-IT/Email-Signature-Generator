@@ -23,7 +23,14 @@
     <div class="form-fields">
       <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
       <label>Role: <input id="role" type="text" oninput="updateSignature()"></label>
-      <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label>
+      <label>Campus: 
+        <select id="campus" onchange="updateSignature()">
+          <option value="">Select a campus</option>
+          <option value="Campus A">Campus A</option>
+          <option value="Campus B">Campus B</option>
+          <option value="Campus C">Campus C</option>
+        </select>
+      </label>
       <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
       <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
