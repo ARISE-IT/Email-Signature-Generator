@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Email Signature Generator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- Passcode Prompt -->
   <div id="passcodePrompt">
     <h2>Enter Passcode to Continue</h2>
     <input type="password" id="passcodeInput" placeholder="Enter passcode" />
@@ -15,9 +16,10 @@
     <p id="error" style="color: red;"></p>
   </div>
 
+  <!-- Main Content Hidden Until Passcode is Correct -->
   <div id="mainContent">
     <div class="logo-header">
-      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" />
+      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" id="headerLogo" />
       <div class="subtitle">Email Signature Generator</div>
     </div>
 
@@ -27,20 +29,7 @@
       <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label>
       <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
-      <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
-
-      <fieldset class="work-schedule">
-        <legend>Work Days & Hours</legend>
-        <div class="day-hours">
-          <div><label><input type="checkbox" value="Mon" onchange="updateSignature()"> Mon</label><input type="time" id="MonStart" onchange="updateSignature()"><input type="time" id="MonEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label><input type="time" id="TueStart" onchange="updateSignature()"><input type="time" id="TueEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label><input type="time" id="WedStart" onchange="updateSignature()"><input type="time" id="WedEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label><input type="time" id="ThuStart" onchange="updateSignature()"><input type="time" id="ThuEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label><input type="time" id="FriStart" onchange="updateSignature()"><input type="time" id="FriEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label><input type="time" id="SatStart" onchange="updateSignature()"><input type="time" id="SatEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Sun" onchange="updateSignature()"> Sun</label><input type="time" id="SunStart" onchange="updateSignature()"><input type="time" id="SunEnd" onchange="updateSignature()"></div>
-        </div>
-      </fieldset>
+      <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
     </div>
 
     <div id="signature">
@@ -50,7 +39,7 @@
         Arise in Campus<br><br>
         📞 Phone<br>
         📧 email@example.com<br>
-        📍 Your Address
+        📍 Your Location
       </div>
       <div class="sig-logo">
         <img src="Sig%20Logo.png" width="400" alt="Signature Logo" />

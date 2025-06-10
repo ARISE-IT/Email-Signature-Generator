@@ -3,84 +3,116 @@ body {
   margin: 0;
   background-color: #f4f4f4;
   color: #333;
-  padding: 30px;
-}
-
-#passcodePrompt {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+#passcodePrompt {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#passcodePrompt h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#passcodePrompt input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 220px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#passcodePrompt button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#passcodePrompt button:hover {
+  background-color: #45a049;
 }
 
 #mainContent {
   display: none;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 20px;
 }
 
 .logo-header {
-  margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .logo-header img {
   width: 300px;
-  max-width: 100%;
+  max-width: 90vw;
+  height: auto;
+  margin: 0 auto 10px auto;
+  display: block;
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
   max-width: 400px;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
+  font-size: 16px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="time"],
-input[type="password"] {
-  width: 100%;
-  padding: 6px;
-  margin-top: 2px;
-  box-sizing: border-box;
-}
-
-fieldset.work-schedule {
-  margin-top: 20px;
+input {
   padding: 10px;
+  margin-top: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
   border: 1px solid #ccc;
-}
-
-.day-hours div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  gap: 6px;
 }
 
 #signature {
   margin-top: 20px;
-  background: #fff;
-  padding: 20px;
   border: 1px solid #ccc;
-  max-width: 600px;
+  padding: 20px;
+  background: #f9f9f9;
+  max-width: 100%;
+  font-size: 14px;
 }
 
 .sig-details {
-  font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .sig-logo img {
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
   height: auto;
 }
 
@@ -91,6 +123,7 @@ fieldset.work-schedule {
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 #copyBtn:hover {
