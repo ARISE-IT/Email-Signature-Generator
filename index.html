@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Email Signature Generator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,10 +16,10 @@
     <p id="error" style="color: red;"></p>
   </div>
 
-  <!-- Main Content Hidden Until Passcode is Correct -->
+  <!-- Main Content -->
   <div id="mainContent">
     <div class="logo-header">
-      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" id="headerLogo" />
+      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" />
       <div class="subtitle">Email Signature Generator</div>
     </div>
 
@@ -30,6 +30,23 @@
       <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
       <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
+
+      <fieldset class="work-schedule">
+        <legend>Work Days & Hours</legend>
+        <div class="days-checkboxes">
+          <label><input type="checkbox" name="workDays" value="Mon" onchange="updateSignature()"> Mon</label>
+          <label><input type="checkbox" name="workDays" value="Tue" onchange="updateSignature()"> Tue</label>
+          <label><input type="checkbox" name="workDays" value="Wed" onchange="updateSignature()"> Wed</label>
+          <label><input type="checkbox" name="workDays" value="Thu" onchange="updateSignature()"> Thu</label>
+          <label><input type="checkbox" name="workDays" value="Fri" onchange="updateSignature()"> Fri</label>
+          <label><input type="checkbox" name="workDays" value="Sat" onchange="updateSignature()"> Sat</label>
+          <label><input type="checkbox" name="workDays" value="Sun" onchange="updateSignature()"> Sun</label>
+        </div>
+        <div class="hours-inputs">
+          <label>From: <input type="time" id="workStart" onchange="updateSignature()"></label>
+          <label>To: <input type="time" id="workEnd" onchange="updateSignature()"></label>
+        </div>
+      </fieldset>
     </div>
 
     <div id="signature">
