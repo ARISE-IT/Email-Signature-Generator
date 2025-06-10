@@ -1,4 +1,4 @@
-const correctPasscode = "1234";
+const correctPasscode = "digyourwell";
 
 function checkPasscode() {
   const input = document.getElementById("passcodeInput").value;
@@ -18,20 +18,30 @@ function updateSignature() {
   const campus = document.getElementById('campus').value.trim();
   const phone = document.getElementById('phone').value || 'Phone';
   const email = document.getElementById('email').value || 'email@example.com';
-  const location = document.getElementById('location').value || 'Your Location';
-  const workStart = document.getElementById('workStart').value;
-  const workEnd = document.getElementById('workEnd').value;
-  const checkedDays = Array.from(document.querySelectorAll('input[name="workDays"]:checked')).map(cb => cb.value);
-
+  const location = document.getElementById('location').value || 'Your Address';
   const campusText = campus ? `Arise in ${campus}` : '';
 
-  let workScheduleText = '';
-  if (checkedDays.length && workStart && workEnd) {
-    workScheduleText = `<br><strong>Office Hours:</strong><br>`;
-    checkedDays.forEach(day => {
-      workScheduleText += `${day}: ${formatTime(workStart)} - ${formatTime(workEnd)}<br>`;
-    });
-  }
+  // Build work schedule
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  let scheduleText = '';
+  let hasSchedule = false;
+
+  days.forEach(day => {
+    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
+    const startInput = document.getElementById(`${day}Start`);
+    const endInput = document.getElementById(`${day}End`);
+
+    if (checkbox && checkbox.checked && startInput && endInput) {
+      const start = formatTime(startInput.value);
+      const end = formatTime(endInput.value);
+      if (start && end) {
+        scheduleText += `${day}: ${start} - ${end}<br>`;
+        hasSchedule = true;
+      }
+    }
+  });
+
+  const officeHours = hasSchedule ? `<br><strong>Office Hours:</strong><br>${scheduleText}` : '';
 
   document.getElementById('sigDetails').innerHTML = `
     <strong>${name}</strong><br>
@@ -40,7 +50,7 @@ function updateSignature() {
     📞 ${phone}<br>
     📧 ${email}<br>
     📍 ${location}
-    ${workScheduleText}
+    ${officeHours}
   `;
 }
 
