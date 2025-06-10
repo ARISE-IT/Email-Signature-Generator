@@ -9,35 +9,40 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
+
 #passcodePrompt {
-  background: #ffffff;
+  background: #fff;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 }
-#passcodePrompt input {
-  padding: 10px;
-  margin: 10px 0;
-  width: 220px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
+
+#passcodePrompt input,
 #passcodePrompt button {
-  padding: 10px 20px;
   font-size: 16px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+#passcodePrompt input {
+  width: 220px;
+  border: 1px solid #ccc;
+}
+
+#passcodePrompt button {
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
+
 #passcodePrompt button:hover {
   background-color: #45a049;
 }
+
 #mainContent {
-  background: white;
+  background: #fff;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -45,34 +50,40 @@ body {
   margin: 20px;
   display: none;
 }
+
 .logo-header {
   text-align: center;
   margin-bottom: 40px;
 }
+
 .logo-header img {
   width: 300px;
   max-width: 90vw;
   height: auto;
-  margin: 0 auto 10px auto;
-  display: block;
+  margin-bottom: 10px;
 }
+
 .subtitle {
   font-size: 28px;
   font-weight: bold;
 }
+
 .form-fields {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
   max-width: 400px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 30px;
 }
+
 label {
-  display: block;
   font-size: 16px;
 }
-input[type="text"], input[type="email"], input[type="time"], input[type="password"] {
+
+input[type="text"],
+input[type="email"],
+input[type="time"],
+input[type="password"] {
   padding: 10px;
   margin-top: 4px;
   width: 100%;
@@ -80,32 +91,38 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+
 .work-schedule {
   margin-top: 20px;
 }
+
 .day-hours div {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
 }
+
 #signature {
   margin-top: 20px;
-  border: 1px solid #ccc;
   padding: 20px;
   background: #f9f9f9;
   max-width: 100%;
   font-size: 14px;
+  border: 1px solid #ccc;
 }
+
 .sig-details {
   margin-bottom: 20px;
   white-space: pre-line;
 }
+
 .sig-logo img {
   width: 100%;
   max-width: 400px;
   height: auto;
 }
+
 #copyBtn {
   margin-top: 20px;
   padding: 10px 15px;
@@ -115,6 +132,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   cursor: pointer;
   border-radius: 6px;
 }
+
 #copyBtn:hover {
   background-color: #45a049;
 }
