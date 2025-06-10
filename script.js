@@ -21,25 +21,46 @@ function updateSignature() {
   const location = document.getElementById('location').value || 'Your Address';
   const campusText = campus ? `Arise in ${campus}` : '';
 
-  // Build work schedule
+  // Work schedule block
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  let scheduleText = '';
-  let hasSchedule = false;
+  let scheduleLines = [];
 
   days.forEach(day => {
     const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
     const startInput = document.getElementById(`${day}Start`);
     const endInput = document.getElementById(`${day}End`);
 
-    if (checkbox && checkbox.checked && startInput && endInput) {
+    if (checkbox?.checked && startInput?.value && endInput?.value) {
       const start = formatTime(startInput.value);
       const end = formatTime(endInput.value);
-      if (start && end) {
-        scheduleText += `${day}: ${start} - ${end}<br>`;
-        hasSchedule = true;
-      }
+      scheduleLines.push(`${day}: ${start} – ${end}`);
     }
   });
+
+  let workSchedule = '';
+  if (scheduleLines.length > 0) {
+    workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
+  }
+
+  document.getElementById('sigDetails').innerHTML = `
+    <strong>${name}</strong><br>
+    <em>${role}</em><br>
+    ${campusText}<br><br>
+    📞 ${phone}<br>
+    📧 ${email}<br>
+    📍 ${location}
+    ${workSchedule}
+  `;
+}
+
+function formatTime(time) {
+  if (!time) return '';
+  const [hour, minute] = time.split(":").map(Number);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const h = hour % 12 || 12;
+  return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
+}
+
 
   const officeHours = hasSchedule ? `<br><strong>Office Hours:</strong><br>${scheduleText}` : '';
 
