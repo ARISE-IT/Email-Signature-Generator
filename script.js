@@ -1,47 +1,59 @@
-function updateSignature() {
-  const name = document.getElementById('fullName').value || 'Your Name';
-  const role = document.getElementById('role').value || 'Your Role';
-  const campus = document.getElementById('campus').value.trim();
-  const phone = document.getElementById('phone').value || 'Phone';
-  const email = document.getElementById('email').value || 'email@example.com';
-  const location = document.getElementById('location').value || 'Your Address';
-  const campusText = campus ? `Arise in ${campus}` : '';
+function checkPasscode() {
+  const input = document.getElementById("passcodeInput").value;
+  if (input === "arise") {
+    document.getElementById("passcodePrompt").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  } else {
+    alert("Incorrect passcode");
+  }
+}
 
-  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  let scheduleLines = [];
+function updateSignature() {
+  const name = document.getElementById("fullName").value;
+  const role = document.getElementById("role").value;
+  const campus = document.getElementById("campus").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const location = document.getElementById("location").value;
+
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  const schedule = [];
 
   days.forEach(day => {
-    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
-    const startInput = document.getElementById(`${day}Start`);
-    const endInput = document.getElementById(`${day}End`);
-
-    if (checkbox?.checked && startInput?.value && endInput?.value) {
-      const start = formatTime(startInput.value);
-      const end = formatTime(endInput.value);
-      scheduleLines.push(`${day}: ${start} – ${end}`);
+    const checked = document.querySelector(`input[type=checkbox][value=${day}]`).checked;
+    if (checked) {
+      const start = document.getElementById(day + "Start").value;
+      const end = document.getElementById(day + "End").value;
+      if (start && end) {
+        schedule.push(`${day} ${start}-${end}`);
+      } else {
+        schedule.push(day);
+      }
     }
   });
 
-  let workSchedule = '';
-  if (scheduleLines.length > 0) {
-    workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
-  }
+  const sig = `
+<strong>${name}</strong>
+<em>${role}</em>
 
-  document.getElementById('sigDetails').innerHTML = `
-    <strong>${name}</strong><br>
-    <em>${role}</em><br>
-    ${campusText}<br><br>
-    📞 ${phone}<br>
-    📧 ${email}<br>
-    📍 ${location}
-    ${workSchedule}
+${campus}
+
+${phone}
+${email}
+${location}
+
+${schedule.length > 0 ? "Work Hours: " + schedule.join(", ") : ""}
   `;
+
+  document.getElementById("sigDetails").innerText = sig.trim();
 }
 
-function formatTime(time) {
-  if (!time) return '';
-  const [hour, minute] = time.split(":").map(Number);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const h = hour % 12 || 12;
-  return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
+function copySignature() {
+  const range = document.createRange();
+  range.selectNode(document.getElementById("sigDetails"));
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+  alert("Signature copied to clipboard");
 }
