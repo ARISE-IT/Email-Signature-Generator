@@ -97,6 +97,25 @@ input {
   border: 1px solid #ccc;
 }
 
+fieldset.work-schedule {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.days-checkboxes label {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.hours-inputs label {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
 #signature {
   margin-top: 20px;
   border: 1px solid #ccc;
