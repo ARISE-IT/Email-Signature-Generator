@@ -34,11 +34,11 @@ function updateSignature() {
     workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
   }
   document.getElementById('sigDetails').innerHTML = `
-    <strong>${name}</strong><br>
-    <em>${role}</em><br>
+    <strong>${name}</strong>
+    <em>${role}</em>
     ${campusText}<br><br>
-    📞 ${phone}<br>
-    📧 ${email}<br>
+    📞 ${phone}
+    📧 ${email}
     📍 ${location}
     ${workSchedule}
   `;
