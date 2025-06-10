@@ -100,6 +100,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 .sig-details {
   margin-bottom: 20px;
   white-space: pre-line;
+  padding:5px;
 }
 .sig-logo img {
   width: 100%;
