@@ -29,22 +29,18 @@
       <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label>
       <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
-      <label>Location: <input id="location" type="text" oninput="updateSignature()"></label>
+      <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
 
       <fieldset class="work-schedule">
         <legend>Work Days & Hours</legend>
-        <div class="days-checkboxes">
-          <label><input type="checkbox" name="workDays" value="Mon" onchange="updateSignature()"> Mon</label>
-          <label><input type="checkbox" name="workDays" value="Tue" onchange="updateSignature()"> Tue</label>
-          <label><input type="checkbox" name="workDays" value="Wed" onchange="updateSignature()"> Wed</label>
-          <label><input type="checkbox" name="workDays" value="Thu" onchange="updateSignature()"> Thu</label>
-          <label><input type="checkbox" name="workDays" value="Fri" onchange="updateSignature()"> Fri</label>
-          <label><input type="checkbox" name="workDays" value="Sat" onchange="updateSignature()"> Sat</label>
-          <label><input type="checkbox" name="workDays" value="Sun" onchange="updateSignature()"> Sun</label>
-        </div>
-        <div class="hours-inputs">
-          <label>From: <input type="time" id="workStart" onchange="updateSignature()"></label>
-          <label>To: <input type="time" id="workEnd" onchange="updateSignature()"></label>
+        <div class="day-hours">
+          <div><label><input type="checkbox" value="Mon" onchange="updateSignature()"> Mon</label><input type="time" id="MonStart" onchange="updateSignature()"><input type="time" id="MonEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label><input type="time" id="TueStart" onchange="updateSignature()"><input type="time" id="TueEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label><input type="time" id="WedStart" onchange="updateSignature()"><input type="time" id="WedEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label><input type="time" id="ThuStart" onchange="updateSignature()"><input type="time" id="ThuEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label><input type="time" id="FriStart" onchange="updateSignature()"><input type="time" id="FriEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label><input type="time" id="SatStart" onchange="updateSignature()"><input type="time" id="SatEnd" onchange="updateSignature()"></div>
+          <div><label><input type="checkbox" value="Sun" onchange="updateSignature()"> Sun</label><input type="time" id="SunStart" onchange="updateSignature()"><input type="time" id="SunEnd" onchange="updateSignature()"></div>
         </div>
       </fieldset>
     </div>
@@ -56,7 +52,7 @@
         Arise in Campus<br><br>
         📞 Phone<br>
         📧 email@example.com<br>
-        📍 Your Location
+        📍 Your Address
       </div>
       <div class="sig-logo">
         <img src="Sig%20Logo.png" width="400" alt="Signature Logo" />
