@@ -1,83 +1,35 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
   background-color: #f4f4f4;
   color: #333;
-  padding: 30px;
-}
-#passcodePrompt {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-#mainContent {
-  display: none;
+  padding: 20px;
 }
 .logo-header {
-  margin-bottom: 30px;
-}
-.logo-header img {
-  width: 300px;
-  max-width: 100%;
+  text-align: center;
 }
 .subtitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 10px;
+  font-size: 1.2em;
+  margin-top: 0.5em;
 }
-.form-fields {
-  max-width: 400px;
-  margin-bottom: 30px;
-}
-label {
+.form-fields label {
   display: block;
-  margin-bottom: 10px;
+  margin-top: 1em;
 }
-input[type="text"],
-input[type="email"],
-input[type="time"],
-input[type="password"] {
-  width: 100%;
-  padding: 6px;
-  margin-top: 2px;
-  box-sizing: border-box;
-}
-fieldset.work-schedule {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
+.work-schedule {
+  margin-top: 1.5em;
 }
 .day-hours div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  gap: 6px;
+  margin-bottom: 0.5em;
 }
 #signature {
-  margin-top: 20px;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  max-width: 600px;
+  display: flex;
+  margin-top: 2em;
+  gap: 40px;
 }
 .sig-details {
-  font-size: 14px;
-  margin-bottom: 10px;
+  white-space: pre-line;
 }
 .sig-logo img {
-  width: 300px;
+  max-width: 100%;
   height: auto;
-}
-#copyBtn {
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-#copyBtn:hover {
-  background-color: #45a049;
 }
