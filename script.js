@@ -9,6 +9,7 @@ function checkPasscode() {
     errorText.textContent = "Incorrect passcode. Please try again.";
   }
 }
+
 function updateSignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
   const role = document.getElementById('role').value || 'Your Role';
@@ -23,7 +24,12 @@ function updateSignature() {
 
   // Collect selected days with their time ranges
   days.forEach(day => {
-    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
+    let checkbox;
+    if (day === 'Sun') {
+      checkbox = document.getElementById('SundayServices');
+    } else {
+      checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
+    }
     const startInput = document.getElementById(`${day}Start`);
     const endInput = document.getElementById(`${day}End`);
     if (checkbox?.checked && startInput?.value && endInput?.value) {
