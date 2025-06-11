@@ -15,55 +15,49 @@ function updateSignature() {
   const role = document.getElementById('role').value || 'Your Role';
   const campus = document.getElementById('campus').value.trim();
   const phone = document.getElementById('phone').value || 'Phone';
-  const email = document.getElementById('email')?.value || 'email@example.com';
-  const location = document.getElementById('location')?.value || 'Your Address';
+  const email = document.getElementById('email').value || 'email@example.com';
+  const location = document.getElementById('location').value || 'Your Address';
   const campusText = campus ? `${campus}` : '';
 
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const selected = [];
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
 
-  // Handle Monday–Saturday work hours
   days.forEach(day => {
     const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
     const startInput = document.getElementById(`${day}Start`);
     const endInput = document.getElementById(`${day}End`);
+
     if (checkbox?.checked && startInput?.value && endInput?.value) {
       const start = formatTime(startInput.value);
       const end = formatTime(endInput.value);
-      selected.push({ day, timeRange: `${start} – ${end}` });
+      const timeRange = `${start} – ${end}`;
+
+      if (!dayMap[timeRange]) {
+        dayMap[timeRange] = [];
+      }
+      dayMap[timeRange].push(day);
     }
   });
 
-  // Group Mon–Sat by identical time ranges
-  const grouped = {};
-  selected.forEach(entry => {
-    if (!grouped[entry.timeRange]) {
-      grouped[entry.timeRange] = [];
-    }
-    grouped[entry.timeRange].push(entry.day);
-  });
+  const scheduleLines = [];
 
-  const scheduleLines = Object.entries(grouped).map(([timeRange, dayList]) => {
-    const formattedDays = collapseDays(dayList);
-    return `${formattedDays} ${timeRange}`;
-  });
-
-  // Handle Sunday Services
-  const sundayCheckbox = document.getElementById('SundayServices');
-  if (sundayCheckbox?.checked) {
-    scheduleLines.push('Sunday Services');
+  for (const [timeRange, groupedDays] of Object.entries(dayMap)) {
+    scheduleLines.push(`${groupedDays.join(', ')}: ${timeRange}`);
   }
 
-  // Build final schedule block
+  const sundayChecked = document.getElementById('SundayServices')?.checked;
+  if (sundayChecked) {
+    scheduleLines.push("Sunday Services");
+  }
+
   let workSchedule = '';
   if (scheduleLines.length > 0) {
     workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
   }
 
-  // Render signature block
   document.getElementById('sigDetails').innerHTML = `
-    <strong>${name}</strong><br>
-    <em>${role}</em><br>
+    <strong>${name}</strong>
+    <em>${role}</em>
     ${campusText}<br><br>
     📞 ${phone}<br>
     📧 ${email}<br>
@@ -71,6 +65,8 @@ function updateSignature() {
     ${workSchedule}
   `;
 }
+
+
 
 // Helper to format 24h → 12h time
 function formatTime(time) {
