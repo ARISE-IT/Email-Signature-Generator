@@ -59,8 +59,8 @@ function updateSignature() {
     <strong>${name}</strong>
     <em>${role}</em>
     ${campusText}<br>
-  <span style="font-size: 80%;">📞</span> ${phone}<br>
-  <span style="font-size: 80%;">📧</span> ${email}<br>
+  <span style="font-size: 80%;">📞</span> ${phone}
+  <span style="font-size: 80%;">📧</span> ${email}
   <span style="font-size: 80%;">📍</span> ${location}
     ${workSchedule}
   `;
