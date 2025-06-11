@@ -1,12 +1,13 @@
 const correctPasscode = "digyourwell";
 function checkPasscode() {
-const input = document.getElementById("passcodeInput").value;
-const errorText = document.getElementById("error");
-if (input === correctPasscode) {
-document.getElementById("passcodePrompt").style.display = "none";
-document.getElementById("mainContent").style.display = "block";
-} else {
-errorText.textContent = "Incorrect passcode. Please try again.";
+  const input = document.getElementById("passcodeInput").value;
+  const errorText = document.getElementById("error");
+  if (input === correctPasscode) {
+    document.getElementById("passcodePrompt").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  } else {
+    errorText.textContent = "Incorrect passcode. Please try again.";
+  }
 }
 }
 function updateSignature() {
