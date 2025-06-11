@@ -57,12 +57,12 @@ function updateSignature() {
 }
 
   document.getElementById('sigDetails').innerHTML = `
-    <strong>${name}</strong>
-    <em>${role}</em>
+    <strong>${name}</strong><br>
+    <em>${role}</em><br>
     ${campusText}<br>
   <div style="margin-top: 6px;">
-    <span style="font-size: 80%;">📞</span> ${phone}
-    <span style="font-size: 80%;">📧</span> ${email}
+    <span style="font-size: 80%;">📞</span> ${phone}<br>
+    <span style="font-size: 80%;">📧</span> ${email}<br>
     <span style="font-size: 80%;">📍</span> ${location}
     ${workSchedule}
   `;
