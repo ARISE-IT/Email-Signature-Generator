@@ -92,7 +92,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 #signature {
   margin-top: 20px;
   border: 1px solid #ccc;
-  padding: 20px;
+  padding: 0px;
   background: #f9f9f9;
   max-width: 100%;
   font-size: 14px;
@@ -100,6 +100,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 .sig-details {
   margin-bottom: 20px;
   white-space: pre-line;
+  padding-left:5px;
 }
 .sig-logo img {
   width: 100%;
