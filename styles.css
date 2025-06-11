@@ -98,13 +98,13 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   font-size: 14px;
 }
 .sig-details {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   white-space: pre-line;
   padding-left:5px;
 }
 .sig-logo img {
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
   height: auto;
 }
 #copyBtn {
