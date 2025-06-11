@@ -16,7 +16,7 @@ function updateSignature() {
   const phone = document.getElementById('phone').value || 'Phone';
   const email = document.getElementById('email').value || 'email@example.com';
   const location = document.getElementById('location').value || 'Your Address';
-  const campusText = campus ? `Arise in ${campus}` : '';
+  const campusText = campus ? `${campus}` : '';
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   let scheduleLines = [];
   days.forEach(day => {
@@ -36,9 +36,9 @@ function updateSignature() {
   document.getElementById('sigDetails').innerHTML = `
     <strong>${name}</strong><br>
     <em>${role}</em><br>
-    ${campusText}<br><br>
-    📞 ${phone}<br>
-    📧 ${email}<br>
+    ${campusText}
+    📞 ${phone}
+    📧 ${email}
     📍 ${location}
     ${workSchedule}
   `;
