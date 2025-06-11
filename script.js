@@ -9,7 +9,6 @@ function checkPasscode() {
     errorText.textContent = "Incorrect passcode. Please try again.";
   }
 }
-}
 function updateSignature() {
 const name = document.getElementById('fullName').value || 'Your Name';
 const role = document.getElementById('role').value || 'Your Role';
