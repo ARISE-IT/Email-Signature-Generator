@@ -99,8 +99,13 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 }
 .sig-details {
   margin-bottom: 8px;
-  white-space: pre-line;
   padding-left:5px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* consistent vertical spacing */
+}
+
 }
 .sig-logo img {
   width: 100%;
@@ -155,3 +160,6 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   width: 120px;      /* consistent width for time inputs */
 }
 
+.workdays {
+  margin-top: 12px;
+}
