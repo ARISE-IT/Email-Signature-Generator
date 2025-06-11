@@ -23,22 +23,7 @@
     <div class="form-fields">
       <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
       <label>Role: <input id="role" type="text" oninput="updateSignature()"></label>
-      <label>Campus: 
-        <select id="campus" onchange="updateSignature()">
-          <option value="">Select a campus</option>
-          <option value="Arise Church">Arise Church</option>
-          <option value="Arise Church in Whangārei">Whangārei</option>
-          <option value="Arise Church in Hamilton">Hamilton</option>
-          <option value="Arise Church in Palmerston North">Palmerston North</option>
-          <option value="Arise Church in Kapiti">Kapiti</option>
-          <option value="Arise Church in Masterton">Masterton</option>
-          <option value="Arise Church in Porirua">Porirua</option>
-          <option value="Arise Church in Wellington">Wellington</option>
-          <option value="Arise Church in Christchurch">Christchurch</option>
-          <option value="Arise Church in Selwyn">Selwyn</option>
-          <option value="Arise Church in Dunedin">Dunedin</option>
-        </select>
-      </label>
+      <label>Campus: <input id="campus" type="text" oninput="updateSignature()"></label>
       <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
       <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
@@ -47,24 +32,23 @@
         <legend>Work Days & Hours</legend>
         <div class="day-hours">
           <div><label><input type="checkbox" value="Mon" onchange="updateSignature()"> Mon</label><input type="time" id="MonStart" onchange="updateSignature()"><input type="time" id="MonEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label><input type="time" id="TueStart" onchange="updateSignature()"><input type="time" id="TueEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label><input type="time" id="WedStart" onchange="updateSignature()"><input type="time" id="WedEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label><input type="time" id="ThuStart" onchange="updateSignature()"><input type="time" id="ThuEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label><input type="time" id="FriStart" onchange="updateSignature()"><input type="time" id="FriEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label><input type="time" id="SatStart" onchange="updateSignature()"><input type="time" id="SatEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Sun" onchange="updateSignature()"> Sun</label><input type="time" id="SunStart" onchange="updateSignature()"><input type="time" id="SunEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label><input type="time" id="TueStart" onchange="updateSignature()"><input type="time" id="TueEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label><input type="time" id="WedStart" onchange="updateSignature()"><input type="time" id="WedEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label><input type="time" id="ThuStart" onchange="updateSignature()"><input type="time" id="ThuEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label><input type="time" id="FriStart" onchange="updateSignature()"><input type="time" id="FriEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label><input type="time" id="SatStart" onchange="updateSignature()"><input type="time" id="SatEnd" onchange="updateSignature()"></div>
+<div><label><input type="checkbox" value="Sun" onchange="updateSignature()"> Sun</label><input type="time" id="SunStart" onchange="updateSignature()"><input type="time" id="SunEnd" onchange="updateSignature()"></div>
         </div>
       </fieldset>
     </div>
 
     <div id="signature">
       <div class="sig-details" id="sigDetails">
-        <strong>Your Name</strong>
-        <em>Your Role</em>
-        Arise Church Campus
-        <br>
-        📞 Phone
-        📧 email@example.com
+        <strong>Your Name</strong><br>
+        <em>Your Role</em><br>
+        Arise in Campus<br><br>
+        📞 Phone<br>
+        📧 email@example.com<br>
         📍 Your Address
       </div>
       <div class="sig-logo">
