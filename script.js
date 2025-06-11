@@ -17,7 +17,7 @@ function updateSignature() {
   const phone = document.getElementById('phone').value || 'Phone';
   const email = document.getElementById('email').value || 'email@example.com';
   const location = document.getElementById('location').value || 'Your Address';
-  const campusText = campus ? `${campus}` : '';
+  const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
 
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
   const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
