@@ -141,7 +141,17 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 }
 
 .day-row span {
-  width: 30px; /* Ensures consistent label width */
+  width: 40px;       /* fixed width for day labels like "Mon", "Tue", etc. */
   text-align: right;
+  display: inline-block;
+}
+
+.day-row input[type="checkbox"] {
+  width: 16px;       /* standard checkbox size */
+  margin-left: 5px;
+}
+
+.day-row input[type="time"] {
+  width: 120px;      /* consistent width for time inputs */
 }
 
