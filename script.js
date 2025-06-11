@@ -1,4 +1,4 @@
-const correctPasscode = "digyourwell";
+const correctPasscode = "1234";
 function checkPasscode() {
   const input = document.getElementById("passcodeInput").value;
   const errorText = document.getElementById("error");
