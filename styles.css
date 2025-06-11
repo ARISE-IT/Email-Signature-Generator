@@ -132,3 +132,16 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 #copyBtn:hover {
   background-color: #45a049;
 }
+
+.day-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.day-row span {
+  width: 30px; /* Ensures consistent label width */
+  text-align: right;
+}
+
