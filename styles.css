@@ -6,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   min-height: 100vh;
 }
 #passcodePrompt {
@@ -116,6 +116,19 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   cursor: pointer;
   border-radius: 6px;
 }
+
+.day-hours .day-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* optional: adjusts spacing between label and time inputs */
+  margin-bottom: 4px; /* optional: spacing between rows */
+}
+
+.day-hours .day-row label {
+  width: 130px; /* Adjust to your preferred width */
+  display: inline-block;
+}
+
 #copyBtn:hover {
   background-color: #45a049;
 }
