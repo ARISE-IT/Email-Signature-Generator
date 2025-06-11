@@ -52,21 +52,19 @@ function updateSignature() {
 
   let workSchedule = '';
   if (scheduleLines.length > 0) {
-  workSchedule = `<div>📅 <strong>Workdays:</strong></div>` +
-                 scheduleLines.map(line => `<div>${line}</div>`).join('');
-}
-
-
+    workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
+  }
 
   document.getElementById('sigDetails').innerHTML = `
-    <div><strong>${name}</strong></div>
-    <div><em>${role}</em></div>
-    <div>${campusText}</div>
-    <div>📞 ${phone}</div>
-    <div>📧 ${email}</div>
-    <div>📍 ${location}</div>
+    <strong>${name}</strong>
+    <em>${role}</em>
+    ${campusText}<br>
+    📞 ${phone}
+    📧 ${email}
+    📍 ${location}
     ${workSchedule}
-`;
+  `;
+}
 
 
 
