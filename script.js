@@ -15,21 +15,16 @@ function updateSignature() {
   const role = document.getElementById('role').value || 'Your Role';
   const campus = document.getElementById('campus').value.trim();
   const phone = document.getElementById('phone').value || 'Phone';
-  const email = document.getElementById('email').value || 'email@example.com';
-  const location = document.getElementById('location').value || 'Your Address';
+  const email = document.getElementById('email')?.value || 'email@example.com';
+  const location = document.getElementById('location')?.value || 'Your Address';
   const campusText = campus ? `${campus}` : '';
 
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const selected = [];
 
-  // Collect selected days with their time ranges
+  // Handle Monday–Saturday work hours
   days.forEach(day => {
-    let checkbox;
-    if (day === 'Sun') {
-      checkbox = document.getElementById('SundayServices');
-    } else {
-      checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
-    }
+    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
     const startInput = document.getElementById(`${day}Start`);
     const endInput = document.getElementById(`${day}End`);
     if (checkbox?.checked && startInput?.value && endInput?.value) {
@@ -39,7 +34,7 @@ function updateSignature() {
     }
   });
 
-  // Group days by identical time ranges
+  // Group Mon–Sat by identical time ranges
   const grouped = {};
   selected.forEach(entry => {
     if (!grouped[entry.timeRange]) {
@@ -48,19 +43,24 @@ function updateSignature() {
     grouped[entry.timeRange].push(entry.day);
   });
 
-  // Format grouped results
   const scheduleLines = Object.entries(grouped).map(([timeRange, dayList]) => {
     const formattedDays = collapseDays(dayList);
     return `${formattedDays} ${timeRange}`;
   });
 
-  // Build final work schedule block
+  // Handle Sunday Services
+  const sundayCheckbox = document.getElementById('SundayServices');
+  if (sundayCheckbox?.checked) {
+    scheduleLines.push('Sunday Services');
+  }
+
+  // Build final schedule block
   let workSchedule = '';
   if (scheduleLines.length > 0) {
     workSchedule = `<br><br>📅 <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}`;
   }
 
-  // Update the email signature block
+  // Render signature block
   document.getElementById('sigDetails').innerHTML = `
     <strong>${name}</strong><br>
     <em>${role}</em><br>
@@ -72,7 +72,7 @@ function updateSignature() {
   `;
 }
 
-// Helper to format time (e.g., 14:00 → 2:00 PM)
+// Helper to format 24h → 12h time
 function formatTime(time) {
   if (!time) return '';
   const [hour, minute] = time.split(":").map(Number);
@@ -81,7 +81,7 @@ function formatTime(time) {
   return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
 }
 
-// Helper to collapse day sequences (e.g., Mon–Fri)
+// Collapse day sequences (e.g., Mon–Wed, Fri)
 function collapseDays(days) {
   const order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   days.sort((a, b) => order.indexOf(a) - order.indexOf(b));
