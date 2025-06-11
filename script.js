@@ -60,7 +60,7 @@ function updateSignature() {
     <strong>${name}</strong><br>
     <em>${role}</em><br>
     ${campusText}<br>
-  <div style="margin-top: 6px;">
+ 
     <span style="font-size: 80%;">📞</span> ${phone}<br>
     <span style="font-size: 80%;">📧</span> ${email}<br>
     <span style="font-size: 80%;">📍</span> ${location}
