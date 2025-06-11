@@ -43,20 +43,45 @@
       <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
       <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
 
-      <fieldset class="work-schedule">
-        <legend>Work Days & Hours</legend>
-        <div class="day-hours">
-          <div><label><input type="checkbox" value="Mon" onchange="updateSignature()"> Mon</label><input type="time" id="MonStart" onchange="updateSignature()"><input type="time" id="MonEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label><input type="time" id="TueStart" onchange="updateSignature()"><input type="time" id="TueEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label><input type="time" id="WedStart" onchange="updateSignature()"><input type="time" id="WedEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label><input type="time" id="ThuStart" onchange="updateSignature()"><input type="time" id="ThuEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label><input type="time" id="FriStart" onchange="updateSignature()"><input type="time" id="FriEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label><input type="time" id="SatStart" onchange="updateSignature()"><input type="time" id="SatEnd" onchange="updateSignature()"></div>
-          <div><label><input type="checkbox" id="SundayServices" onchange="updateSignature()"> Sunday Services</label></div>
+     <fieldset class="work-schedule">
+  <legend>Work Days & Hours</legend>
+  <div class="day-hours">
+    <div class="day-row">
+      <label><input type="checkbox" value="Mon" onchange="updateSignature()"> Mon</label>
+      <input type="time" id="MonStart" onchange="updateSignature()">
+      <input type="time" id="MonEnd" onchange="updateSignature()">
+    </div>
+    <div class="day-row">
+      <label><input type="checkbox" value="Tue" onchange="updateSignature()"> Tue</label>
+      <input type="time" id="TueStart" onchange="updateSignature()">
+      <input type="time" id="TueEnd" onchange="updateSignature()">
+    </div>
+    <div class="day-row">
+      <label><input type="checkbox" value="Wed" onchange="updateSignature()"> Wed</label>
+      <input type="time" id="WedStart" onchange="updateSignature()">
+      <input type="time" id="WedEnd" onchange="updateSignature()">
+    </div>
+    <div class="day-row">
+      <label><input type="checkbox" value="Thu" onchange="updateSignature()"> Thu</label>
+      <input type="time" id="ThuStart" onchange="updateSignature()">
+      <input type="time" id="ThuEnd" onchange="updateSignature()">
+    </div>
+    <div class="day-row">
+      <label><input type="checkbox" value="Fri" onchange="updateSignature()"> Fri</label>
+      <input type="time" id="FriStart" onchange="updateSignature()">
+      <input type="time" id="FriEnd" onchange="updateSignature()">
+    </div>
+    <div class="day-row">
+      <label><input type="checkbox" value="Sat" onchange="updateSignature()"> Sat</label>
+      <input type="time" id="SatStart" onchange="updateSignature()">
+      <input type="time" id="SatEnd" onchange="updateSignature()">
+    </div>
+    <div>
+      <label><input type="checkbox" id="SundayServices" onchange="updateSignature()"> Sunday Services</label>
+    </div>
+  </div>
+</fieldset>
 
-       
-        </div>
-      </fieldset>
     </div>
 
     <div id="signature">
