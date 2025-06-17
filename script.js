@@ -103,7 +103,8 @@ function collapseDays(days) {
 
 function copySignature() {
   const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = document.getElementById("signature").innerHTML;
+  const sigContent = document.getElementById("sigDetails").outerHTML + document.querySelector(".sig-logo").outerHTML;
+  tempDiv.innerHTML = sigContent;
   document.body.appendChild(tempDiv);
   const range = document.createRange();
   range.selectNode(tempDiv);
