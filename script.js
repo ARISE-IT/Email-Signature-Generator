@@ -103,19 +103,31 @@ function collapseDays(days) {
 
 
 function copySignature() {
+  const sigDetails = document.getElementById("sigDetails").outerHTML;
+  const sigLogo = document.querySelector(".sig-logo").outerHTML;
+
   const tempDiv = document.createElement("div");
-  const sigContent = document.getElementById("sigDetails").outerHTML + document.querySelector(".sig-logo").outerHTML;
-  tempDiv.innerHTML = sigContent;
+  tempDiv.innerHTML = sigDetails + sigLogo;
+
+  // Optional: Add minimal inline styles to preserve formatting
+  tempDiv.style.all = 'unset'; // Prevent inherited styles from affecting paste
+  tempDiv.style.fontFamily = 'Arial, sans-serif'; // Keep consistent font
+  tempDiv.style.fontSize = '14px'; // Match signature style
+
   document.body.appendChild(tempDiv);
+
   const range = document.createRange();
   range.selectNode(tempDiv);
-  window.getSelection().removeAllRanges();
-  window.getSelection().addRange(range);
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
   try {
     document.execCommand("copy");
     alert("Signature copied to clipboard!");
   } catch (err) {
     alert("Failed to copy. Try selecting and copying manually.");
   }
+
   document.body.removeChild(tempDiv);
 }
