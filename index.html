@@ -117,3 +117,24 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+<div class="device-instructions">
+  <h3>Need Help Installing Your Signature?</h3>
+
+  <label for="device">Which device do you plan to use this on?</label>
+  <select id="device" onchange="updateAppDropdown()">
+    <option value="">-- Select Device --</option>
+    <option value="computer">Computer</option>
+    <option value="iphone">iPhone</option>
+  </select>
+
+  <div id="appSection" style="display: none;">
+    <label for="app">Which app do you use for Email?</label>
+    <select id="app" onchange="showInstructions()">
+      <!-- App options will be populated dynamically -->
+    </select>
+  </div>
+
+  <div id="screenshotGallery" class="screenshot-gallery" style="display: none;"></div>
+</div>
