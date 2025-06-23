@@ -217,3 +217,51 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   transform: scale(1.03);
 }
 
+.screenshot-gallery {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 10000;
+  border-radius: 4px;
+}
+
+.lightbox-close { top: 10px; right: 10px; }
+.lightbox-prev { top: 50%; left: -50px; transform: translateY(-50%); }
+.lightbox-next { top: 50%; right: -50px; transform: translateY(-50%); }
