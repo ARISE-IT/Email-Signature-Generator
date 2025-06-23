@@ -3,115 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Email Signature Generator</title>
+  <title>Email Signature Help</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="favicon-32x32.png">
 </head>
 <body>
-  <div id="passcodePrompt">
-    <div class="logo-header">
-    <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" />
-    <div class="subtitle">Email Signature Generator</div>
-    </div>
-    <p>Enter Passcode to Continue</p>
-    <input type="password" id="passcodeInput" placeholder="Enter passcode" />
-    <button onclick="checkPasscode()">Submit</button>
-    <p id="error" style="color: red;"></p>
-  </div>
 
-  <div id="mainContent" style="display:none;">
-    <div class="logo-header">
-      <img src="Arise-Logo-Black.png" alt="ARISE Church Logo" />
-      <div class="subtitle">Email Signature Generator</div>
-    </div>
+  <div class="device-instructions">
+    <h3>Need Help Installing Your Signature?</h3>
 
-    <div class="form-fields">
-      <label>Full Name: <input id="fullName" type="text" oninput="updateSignature()"></label>
-      <label>Role: <input id="role" type="text" oninput="updateSignature()"></label>
-      <label>Campus: 
-        <select id="campus" onchange="updateSignature()">
-          <option value="">Select a campus</option>
-          <option value="Arise Church">Arise Church</option>
-          <option value="Arise Church in Whangārei">Whangārei</option>
-          <option value="Arise Church in Hamilton">Hamilton</option>
-          <option value="Arise Church in Palmerston North">Palmerston North</option>
-          <option value="Arise Church in Kapiti">Kapiti</option>
-          <option value="Arise Church in Masterton">Masterton</option>
-          <option value="Arise Church in Porirua">Porirua</option>
-          <option value="Arise Church in Wellington">Wellington</option>
-          <option value="Arise Church in Christchurch">Christchurch</option>
-          <option value="Arise Church in Selwyn">Selwyn</option>
-          <option value="Arise Church in Dunedin">Dunedin</option>
-        </select>
-      </label>
-      <label>Phone: <input id="phone" type="text" oninput="updateSignature()"></label>
-      <label>Email: <input id="email" type="text" oninput="updateSignature()"></label>
-      <label>Address: <input id="location" type="text" oninput="updateSignature()"></label>
+    <label for="device">Which device do you plan to use this on?</label>
+    <select id="device" onchange="updateAppDropdown()">
+      <option value="">-- Select Device --</option>
+      <option value="computer">Computer</option>
+      <option value="iphone">iPhone</option>
+    </select>
 
-     <fieldset class="work-schedule">
-  <legend>Work Days & Hours</legend>
-  <div class="day-hours">
-    <div class="day-row">
-  <span>Mon</span>
-  <input type="checkbox" value="Mon" onchange="updateSignature()">
-  <input type="time" id="MonStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="MonEnd" value="17:00" onchange="updateSignature()">
-</div>
-<div class="day-row">
-  <span>Tue</span>
-  <input type="checkbox" value="Tue" onchange="updateSignature()">
-  <input type="time" id="TueStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="TueEnd" value="17:00" onchange="updateSignature()">
-</div>
-<div class="day-row">
-  <span>Wed</span>
-  <input type="checkbox" value="Wed" onchange="updateSignature()">
-  <input type="time" id="WedStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="WedEnd" value="17:00" onchange="updateSignature()">
-</div>
-<div class="day-row">
-  <span>Thu</span>
-  <input type="checkbox" value="Thu" onchange="updateSignature()">
-  <input type="time" id="ThuStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="ThuEnd" value="17:00" onchange="updateSignature()">
-</div>
-<div class="day-row">
-  <span>Fri</span>
-  <input type="checkbox" value="Fri" onchange="updateSignature()">
-  <input type="time" id="FriStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="FriEnd" value="17:00" onchange="updateSignature()">
-</div>
-<div class="day-row">
-  <span>Sat</span>
-  <input type="checkbox" value="Sat" onchange="updateSignature()">
-  <input type="time" id="SatStart" value="09:00" onchange="updateSignature()">
-  <input type="time" id="SatEnd" value="17:00" onchange="updateSignature()">
-</div>
-
-    <div class="day-row">
-  <span>Sun</span>
-  <input type="checkbox" id="SundayServices" onchange="updateSignature()"> Sunday Services
-</div>
-  </div>
-</fieldset>
-
+    <div id="appSection" style="display: none;">
+      <label for="app">Which app do you use for Email?</label>
+      <select id="app" onchange="showInstructions()">
+        <!-- App options will be populated dynamically -->
+      </select>
     </div>
 
-    <div id="signature">
-     <div class="sig-details" id="sigDetails">
-    <div><strong>Your Name</strong></div>
-    <div><em>Your Role</em></div>
-    <div>Arise Church</div><br>
-  <span style="font-size: 80%;">📞</span> Phone<br>
-  <span style="font-size: 80%;">📧</span> email@example.com<br>
-  <span style="font-size: 80%;">📍</span> Your Address
-    </div>
-      <div class="sig-logo">
-        <img src="Sig%20Logo.png" width="400" alt="Signature Logo" />
-      </div>
-    </div>
-
-    <button id="copyBtn" onclick="copySignature()">Copy Signature</button>
+    <div id="screenshotGallery" class="screenshot-gallery" style="display: none;"></div>
   </div>
 
   <script src="script.js"></script>
