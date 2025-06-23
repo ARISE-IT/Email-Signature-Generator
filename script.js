@@ -1,3 +1,7 @@
+let currentImageIndex = 0;
+let currentApp = '';
+
+
 const correctPasscode = "111";
 function checkPasscode() {
   const input = document.getElementById("passcodeInput").value;
@@ -165,7 +169,14 @@ function updateAppDropdown() {
   const appSection = document.getElementById("appSection");
   const screenshotGallery = document.getElementById("screenshotGallery");
 
+  // Reset the app dropdown
   appSelect.innerHTML = "";
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = '-- Select App --';
+  appSelect.appendChild(placeholder);
+
+  // Hide gallery & app section for now
   screenshotGallery.innerHTML = "";
   screenshotGallery.style.display = "none";
 
@@ -173,6 +184,18 @@ function updateAppDropdown() {
     appSection.style.display = "none";
     return;
   }
+
+  // Populate app options based on device
+  appOptions[device].forEach(app => {
+    const option = document.createElement("option");
+    option.value = app.value;
+    option.textContent = app.text;
+    appSelect.appendChild(option);
+  });
+
+  appSection.style.display = "block";
+}
+
 
   appOptions[device].forEach(app => {
     const option = document.createElement("option");
@@ -185,27 +208,59 @@ function updateAppDropdown() {
 }
 
 function showInstructions() {
-  const app = document.getElementById("app").value;
+  currentApp = document.getElementById("app").value;
   const gallery = document.getElementById("screenshotGallery");
 
   gallery.innerHTML = "";
 
-  if (!app || !screenshotCounts[app]) {
+  if (!currentApp || !screenshotCounts[currentApp]) {
     gallery.style.display = "none";
     return;
   }
 
-  const count = screenshotCounts[app];
+  const count = screenshotCounts[currentApp];
   for (let i = 1; i <= count; i++) {
-    const folderName = app;
-    const fileName = `${app} ${i}.png`;
+    const fileName = `${currentApp} ${i}.png`;
     const img = document.createElement("img");
-    img.src = `Email Signature Screenshots/${folderName}/${fileName}`;
+    img.src = `Email Signature Screenshots/${currentApp}/${fileName}`;
     img.alt = `Step ${i}`;
+    img.dataset.index = i;
+    img.addEventListener("click", () => openLightbox(i));
     gallery.appendChild(img);
   }
 
-  gallery.style.display = "grid";
+  gallery.style.display = "flex";
+}
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  updateLightboxImage();
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function updateLightboxImage() {
+  const img = document.getElementById("lightboxImage");
+  const src = `Email Signature Screenshots/${currentApp}/${currentApp} ${currentImageIndex}.png`;
+  img.src = src;
+  img.alt = `Step ${currentImageIndex}`;
+}
+
+function nextImage() {
+  if (currentImageIndex < screenshotCounts[currentApp]) {
+    currentImageIndex++;
+    updateLightboxImage();
+  }
+}
+
+function prevImage() {
+  if (currentImageIndex > 1) {
+    currentImageIndex--;
+    updateLightboxImage();
+  }
 }
 
 
