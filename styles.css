@@ -93,7 +93,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   margin-top: 20px;
   border: 1px solid #ccc;
   padding: 0px;
-  background: none;
+  background: #f9f9f9;
   max-width: 100%;
   font-size: 14px;
 }
