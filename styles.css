@@ -98,6 +98,11 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   font-size: 14px;
 }
 
+#signature, .sig-details, .sig-logo {
+  background-color: transparent !important;
+}
+
+
 .sig-logo img {
   width: 100%;
   max-width: 400px;
