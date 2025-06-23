@@ -1,5 +1,3 @@
-let currentImageIndex = 0;
-let currentApp = '';
 
 
 const correctPasscode = "111";
@@ -13,6 +11,23 @@ function checkPasscode() {
     errorText.textContent = "Incorrect passcode. Please try again.";
   }
 }
+
+
+const appOptions = {
+  computer: [
+    { value: "Outlook 365 (Desktop) Mac", text: "Outlook for Mac" },
+    { value: "Chrome Outlook 365", text: "Outlook in Browser" },
+    { value: "Apple Mail Mac", text: "Apple Mail" }
+  ],
+  iphone: [
+    { value: "Outlook 365 for iPhone", text: "Outlook for iPhone" },
+    { value: "Mail for iPhone", text: "Apple Mail" }
+  ]
+};
+
+
+let currentImageIndex = 0;
+let currentApp = '';
 
 function updateSignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
