@@ -117,17 +117,16 @@
   <h3>Need Help Installing Your Signature?</h3>
 
   <label for="device">Which device do you plan to use this on?</label>
-  <select id="device" onchange="updateAppDropdown()">
-    <option value="">-- Select Device --</option>
-    <option value="computer">Computer</option>
-    <option value="iphone">iPhone</option>
-  </select>
+<select id="device" onchange="updateAppDropdown()">
+  <option value="">-- Select Device --</option>
+  <option value="computer">Computer</option>
+  <option value="iphone">iPhone</option>
+</select>
 
-  <div id="appSection" style="display: none;">
-    <label for="app">Which app do you use for Email?</label>
-    <select id="app" onchange="showInstructions()">
-      <!-- App options will be populated dynamically -->
-    </select>
+<!-- The app dropdown will be populated dynamically, so just add placeholder -->
+<select id="app" onchange="showInstructions()">
+  <option value="">-- Select App --</option>
+</select>
   </div>
 
   <div id="screenshotGallery" class="screenshot-gallery" style="display: none;"></div>
@@ -135,6 +134,16 @@
   </div>
 
   <script src="script.js"></script>
+
+  <div id="lightbox" class="lightbox" style="display: none;">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImage" src="" alt="Large View">
+    <button class="lightbox-prev" onclick="prevImage()">←</button>
+    <button class="lightbox-next" onclick="nextImage()">→</button>
+  </div>
+</div>
+  
 </body>
 </html>
 
