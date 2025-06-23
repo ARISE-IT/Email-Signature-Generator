@@ -110,10 +110,6 @@ function copySignature() {
   tempDiv.style.fontFamily = "Arial, sans-serif";
   tempDiv.style.fontSize = "14px";
   tempDiv.style.lineHeight = "1.4";
-  tempDiv.style.backgroundColor = "transparent";  // explicitly set background
-  tempDiv.style.border = "none";
-  tempDiv.style.padding = "0";
-  tempDiv.style.margin = "0";
 
   // Build HTML structure fresh — without copying any inherited styles
   tempDiv.innerHTML = `
@@ -122,7 +118,7 @@ function copySignature() {
   `;
 
   // Prevent copied box styling
-  tempDiv.style.background = #fffff;
+  tempDiv.style.background = "none";
   tempDiv.style.border = "none";
 
   document.body.appendChild(tempDiv);
