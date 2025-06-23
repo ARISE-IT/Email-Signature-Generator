@@ -122,7 +122,7 @@ function copySignature() {
   `;
 
   // Prevent copied box styling
-  tempDiv.style.background = "none";
+  tempDiv.style.background = #fffff;
   tempDiv.style.border = "none";
 
   document.body.appendChild(tempDiv);
