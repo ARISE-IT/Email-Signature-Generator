@@ -222,16 +222,13 @@ function copySignature() {
   tempDiv.style.fontFamily = "Arial, sans-serif";
   tempDiv.style.fontSize = "14px";
   tempDiv.style.lineHeight = "1.4";
+  tempDiv.style.background = "none";
+  tempDiv.style.border = "none";
 
-  // Build HTML structure fresh — without copying any inherited styles
   tempDiv.innerHTML = `
     <div>${sigDetails.innerHTML}</div>
     <div>${sigLogo.innerHTML}</div>
   `;
-
-  // Prevent copied box styling
-  tempDiv.style.background = "none";
-  tempDiv.style.border = "none";
 
   document.body.appendChild(tempDiv);
 
@@ -250,6 +247,7 @@ function copySignature() {
 
   document.body.removeChild(tempDiv);
 }
+
 
 // Optional: Attach updateSignature to inputs dynamically (if you don't use oninput inline)
 document.addEventListener("DOMContentLoaded", () => {
