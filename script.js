@@ -103,20 +103,24 @@ function collapseDays(days) {
 
 
 function copySignature() {
-  const sigDetailsHTML = document.getElementById("sigDetails").innerHTML;
-  const sigLogoHTML = document.querySelector(".sig-logo").innerHTML;
+  const sigDetails = document.getElementById("sigDetails");
+  const sigLogo = document.querySelector(".sig-logo");
 
   const tempDiv = document.createElement("div");
+  tempDiv.style.fontFamily = "Arial, sans-serif";
+  tempDiv.style.fontSize = "14px";
+  tempDiv.style.lineHeight = "1.4";
 
-  // Wrap signature content without any styled container
+  // Build HTML structure fresh — without copying any inherited styles
   tempDiv.innerHTML = `
-    <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4;">
-      ${sigDetailsHTML}
-      <div>${sigLogoHTML}</div>
-    </div>
+    <div>${sigDetails.innerHTML}</div>
+    <div>${sigLogo.innerHTML}</div>
   `;
 
-  // Append to body temporarily
+  // Prevent copied box styling
+  tempDiv.style.background = "none";
+  tempDiv.style.border = "none";
+
   document.body.appendChild(tempDiv);
 
   const range = document.createRange();
@@ -129,8 +133,9 @@ function copySignature() {
     document.execCommand("copy");
     alert("Signature copied to clipboard!");
   } catch (err) {
-    alert("Failed to copy. Try selecting and copying manually.");
+    alert("Failed to copy. Try selecting manually.");
   }
 
   document.body.removeChild(tempDiv);
 }
+
