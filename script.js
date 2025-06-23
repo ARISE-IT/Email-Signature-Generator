@@ -197,9 +197,10 @@ function showInstructions() {
 
   const count = screenshotCounts[app];
   for (let i = 1; i <= count; i++) {
+    const folderName = app;
     const fileName = `${app} ${i}.png`;
     const img = document.createElement("img");
-    img.src = `images/${fileName}`;
+    img.src = `Email Signature Screenshots/${folderName}/${fileName}`;
     img.alt = `Step ${i}`;
     gallery.appendChild(img);
   }
