@@ -103,17 +103,20 @@ function collapseDays(days) {
 
 
 function copySignature() {
-  const sigDetails = document.getElementById("sigDetails").outerHTML;
-  const sigLogo = document.querySelector(".sig-logo").outerHTML;
+  const sigDetailsHTML = document.getElementById("sigDetails").innerHTML;
+  const sigLogoHTML = document.querySelector(".sig-logo").innerHTML;
 
   const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = sigDetails + sigLogo;
 
-  // Optional: Add minimal inline styles to preserve formatting
-  tempDiv.style.all = 'unset'; // Prevent inherited styles from affecting paste
-  tempDiv.style.fontFamily = 'Arial, sans-serif'; // Keep consistent font
-  tempDiv.style.fontSize = '14px'; // Match signature style
+  // Wrap signature content without any styled container
+  tempDiv.innerHTML = `
+    <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4;">
+      ${sigDetailsHTML}
+      <div>${sigLogoHTML}</div>
+    </div>
+  `;
 
+  // Append to body temporarily
   document.body.appendChild(tempDiv);
 
   const range = document.createRange();
