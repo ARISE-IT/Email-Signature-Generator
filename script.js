@@ -10,98 +10,6 @@ function checkPasscode() {
   }
 }
 
-function updateSignature() {
-  const name = document.getElementById('fullName').value || 'Your Name';
-  const role = document.getElementById('role').value || 'Your Role';
-  const campus = document.getElementById('campus').value.trim();
-  const phone = document.getElementById('phone').value || 'Phone';
-  const email = document.getElementById('email').value || 'email@example.com';
-  const location = document.getElementById('location').value || 'Your Address';
-  const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
-
-  const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
-  const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
-
-  days.forEach(day => {
-    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
-    const startInput = document.getElementById(`${day}Start`);
-    const endInput = document.getElementById(`${day}End`);
-
-    if (checkbox?.checked && startInput?.value && endInput?.value) {
-      const start = formatTime(startInput.value);
-      const end = formatTime(endInput.value);
-      const timeRange = `${start} – ${end}`;
-
-      if (!dayMap[timeRange]) {
-        dayMap[timeRange] = [];
-      }
-      dayMap[timeRange].push(day);
-    }
-  });
-
-  const scheduleLines = [];
-
-  for (const [timeRange, groupedDays] of Object.entries(dayMap)) {
-    scheduleLines.push(`${groupedDays.join(', ')}: ${timeRange}`);
-  }
-
-  const sundayChecked = document.getElementById('SundayServices')?.checked;
-  if (sundayChecked) {
-    scheduleLines.push("Sunday Services");
-  }
-
-  let workSchedule = '';
-  if (scheduleLines.length > 0) {
-    workSchedule = `<div>📅 <strong>Workdays:</strong></div>` +
-      scheduleLines.map(line => `<div>${line}</div>`).join('');
-}
-
-  document.getElementById('sigDetails').innerHTML = `
-    <div><strong>${name}</strong></div>
-    <div><em>${role}</em></div>
-    <div>${campusText}</div><br>
-    <div><span style="font-size: 80%;">📞</span> ${phone}</div>
-    <div><span style="font-size: 80%;">📧</span> ${email}</div>
-    <div><span style="font-size: 80%;">📍</span> ${location}</div>
-    ${workSchedule}
-`;
-
-}
-
-
-
-// Helper to format 24h → 12h time
-function formatTime(time) {
-  if (!time) return '';
-  const [hour, minute] = time.split(":").map(Number);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const h = hour % 12 || 12;
-  return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
-}
-
-// Collapse day sequences (e.g., Mon–Wed, Fri)
-function collapseDays(days) {
-  const order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  days.sort((a, b) => order.indexOf(a) - order.indexOf(b));
-
-  const ranges = [];
-  let start = days[0];
-  let end = days[0];
-
-  for (let i = 1; i < days.length; i++) {
-    const current = days[i];
-    if (order.indexOf(current) === order.indexOf(end) + 1) {
-      end = current;
-    } else {
-      ranges.push(start === end ? start : `${start}–${end}`);
-      start = end = current;
-    }
-  }
-  ranges.push(start === end ? start : `${start}–${end}`);
-  return ranges.join(', ');
-}
-
-
 function copySignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
   const role = document.getElementById('role').value || 'Your Role';
@@ -110,7 +18,6 @@ function copySignature() {
   const email = document.getElementById('email').value || 'email@example.com';
   const location = document.getElementById('location').value || 'Your Address';
 
-  // Create workdays schedule preview
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const dayMap = {};
   days.forEach(day => {
@@ -131,31 +38,29 @@ function copySignature() {
   for (const [range, group] of Object.entries(dayMap)) {
     scheduleLines.push(`${group.join(', ')}: ${range}`);
   }
-  if (sundayChecked) {
-    scheduleLines.push("Sunday Services");
-  }
+  if (sundayChecked) scheduleLines.push("Sunday Services");
 
   const workSchedule = scheduleLines.length
-    ? `<div>📅 <strong>Workdays:</strong></div>` + scheduleLines.map(line => `<div>${line}</div>`).join('')
+    ? `<tr><td style="padding-top: 10px;" colspan="2"><span style="font-size: 80%;">📅</span> <strong>Workdays:</strong><br>${scheduleLines.join('<br>')}</td></tr>`
     : '';
 
-  // Build clean signature HTML manually
-  const tempDiv = document.createElement("div");
-  tempDiv.style.fontFamily = "Arial, sans-serif";
-  tempDiv.style.fontSize = "14px";
-  tempDiv.style.lineHeight = "1.4";
-
-  tempDiv.innerHTML = `
-    <div><strong>${name}</strong></div>
-    <div><em>${role}</em></div>
-    <div>${campus}</div><br>
-    <div><span style="font-size: 80%;">📞</span> ${phone}</div>
-    <div><span style="font-size: 80%;">📧</span> ${email}</div>
-    <div><span style="font-size: 80%;">📍</span> ${location}</div>
-    ${workSchedule}
-    <div><img src="Sig%20Logo.png" width="400" alt="Signature Logo" /></div>
+  const signatureHTML = `
+    <table style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; border: none; background: none;">
+      <tr>
+        <td><strong>${name}</strong><br>
+        <em>${role}</em><br>
+        ${campus}<br><br>
+        <span style="font-size: 80%;">📞</span> ${phone}<br>
+        <span style="font-size: 80%;">📧</span> ${email}<br>
+        <span style="font-size: 80%;">📍</span> ${location}</td>
+      </tr>
+      ${workSchedule}
+      <tr><td style="padding-top: 10px;"><img src="Sig%20Logo.png" width="400" alt="Signature Logo" /></td></tr>
+    </table>
   `;
 
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = signatureHTML;
   document.body.appendChild(tempDiv);
 
   const range = document.createRange();
@@ -168,7 +73,7 @@ function copySignature() {
     document.execCommand("copy");
     alert("Signature copied to clipboard!");
   } catch (err) {
-    alert("Failed to copy. Try selecting manually.");
+    alert("Failed to copy. Try selecting and copying manually.");
   }
 
   document.body.removeChild(tempDiv);
