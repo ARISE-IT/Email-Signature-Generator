@@ -167,6 +167,22 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
   font-size: 1.5em;
 }
 
+.device-instructions {
+  margin-top: 50px;
+  padding: 30px;
+  background-color: #ffffff; /* WHITE background */
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid #ccc;
+}
+
+.device-instructions h3 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
 .device-instructions label {
   display: block;
   margin-top: 20px;
@@ -200,3 +216,4 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 .screenshot-gallery img:hover {
   transform: scale(1.03);
 }
+
