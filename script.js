@@ -103,23 +103,58 @@ function collapseDays(days) {
 
 
 function copySignature() {
-  const sigDetails = document.getElementById("sigDetails");
-  const sigLogo = document.querySelector(".sig-logo");
+  const name = document.getElementById('fullName').value || 'Your Name';
+  const role = document.getElementById('role').value || 'Your Role';
+  const campus = document.getElementById('campus').value.trim() || 'Arise Church';
+  const phone = document.getElementById('phone').value || 'Phone';
+  const email = document.getElementById('email').value || 'email@example.com';
+  const location = document.getElementById('location').value || 'Your Address';
 
+  // Create workdays schedule preview
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayMap = {};
+  days.forEach(day => {
+    const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
+    const startInput = document.getElementById(`${day}Start`);
+    const endInput = document.getElementById(`${day}End`);
+    if (checkbox?.checked && startInput?.value && endInput?.value) {
+      const start = formatTime(startInput.value);
+      const end = formatTime(endInput.value);
+      const timeRange = `${start} – ${end}`;
+      if (!dayMap[timeRange]) dayMap[timeRange] = [];
+      dayMap[timeRange].push(day);
+    }
+  });
+
+  const sundayChecked = document.getElementById('SundayServices')?.checked;
+  const scheduleLines = [];
+  for (const [range, group] of Object.entries(dayMap)) {
+    scheduleLines.push(`${group.join(', ')}: ${range}`);
+  }
+  if (sundayChecked) {
+    scheduleLines.push("Sunday Services");
+  }
+
+  const workSchedule = scheduleLines.length
+    ? `<div>📅 <strong>Workdays:</strong></div>` + scheduleLines.map(line => `<div>${line}</div>`).join('')
+    : '';
+
+  // Build clean signature HTML manually
   const tempDiv = document.createElement("div");
   tempDiv.style.fontFamily = "Arial, sans-serif";
   tempDiv.style.fontSize = "14px";
   tempDiv.style.lineHeight = "1.4";
 
-  // Build HTML structure fresh — without copying any inherited styles
   tempDiv.innerHTML = `
-    <div>${sigDetails.innerHTML}</div>
-    <div>${sigLogo.innerHTML}</div>
+    <div><strong>${name}</strong></div>
+    <div><em>${role}</em></div>
+    <div>${campus}</div><br>
+    <div><span style="font-size: 80%;">📞</span> ${phone}</div>
+    <div><span style="font-size: 80%;">📧</span> ${email}</div>
+    <div><span style="font-size: 80%;">📍</span> ${location}</div>
+    ${workSchedule}
+    <div><img src="Sig%20Logo.png" width="400" alt="Signature Logo" /></div>
   `;
-
-  // Prevent copied box styling
-  tempDiv.style.background = "none";
-  tempDiv.style.border = "none";
 
   document.body.appendChild(tempDiv);
 
