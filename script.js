@@ -1,14 +1,130 @@
 const correctPasscode = "111";
+
 function checkPasscode() {
   const input = document.getElementById("passcodeInput").value;
   const errorText = document.getElementById("error");
+
   if (input === correctPasscode) {
     document.getElementById("passcodePrompt").style.display = "none";
     document.getElementById("mainContent").style.display = "block";
+    updateSignature(); // update signature once unlocked
   } else {
     errorText.textContent = "Incorrect passcode. Please try again.";
   }
 }
+
+const appOptions = {
+  computer: [
+    { value: "Outlook 365 (Desktop) Mac", text: "Outlook for Mac" },
+    { value: "Chrome Outlook 365", text: "Outlook in Browser" },
+    { value: "Apple Mail Mac", text: "Apple Mail" }
+  ],
+  iphone: [
+    { value: "Outlook 365 for iPhone", text: "Outlook for iPhone" },
+    { value: "Mail for iPhone", text: "Apple Mail" }
+  ]
+};
+
+const screenshotCounts = {
+  "Mail for iPhone": 7,
+  "Outlook 365 for iPhone": 5,
+  "Outlook 365 (Desktop) Mac": 6,
+  "Apple Mail Mac": 8,
+  "Chrome Outlook 365": 4
+};
+
+let currentImageIndex = 0;
+let currentApp = "";
+
+function updateAppDropdown() {
+  const device = document.getElementById("device").value;
+  const appSelect = document.getElementById("app");
+  const appSection = document.getElementById("appSection");
+  const screenshotGallery = document.getElementById("screenshotGallery");
+
+  appSelect.innerHTML = "";
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "-- Select App --";
+  appSelect.appendChild(placeholder);
+
+  screenshotGallery.innerHTML = "";
+  screenshotGallery.style.display = "none";
+
+  if (!device) {
+    appSection.style.display = "none";
+    return;
+  }
+
+  appOptions[device].forEach(app => {
+    const option = document.createElement("option");
+    option.value = app.value;
+    option.textContent = app.text;
+    appSelect.appendChild(option);
+  });
+
+  appSection.style.display = "block";
+}
+
+function showInstructions() {
+  currentApp = document.getElementById("app").value;
+  const gallery = document.getElementById("screenshotGallery");
+
+  gallery.innerHTML = "";
+
+  if (!currentApp || !screenshotCounts[currentApp]) {
+    gallery.style.display = "none";
+    return;
+  }
+
+  const count = screenshotCounts[currentApp];
+  for (let i = 1; i <= count; i++) {
+    const fileName = `${currentApp} ${i}.png`;
+    const img = document.createElement("img");
+    img.src = `Email Signature Screenshots/${currentApp}/${fileName}`;
+    img.alt = `Step ${i}`;
+    img.dataset.index = i;
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => openLightbox(i));
+    gallery.appendChild(img);
+  }
+
+  gallery.style.display = "flex";
+}
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  updateLightboxImage();
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function updateLightboxImage() {
+  const img = document.getElementById("lightboxImage");
+  const src = `Email Signature Screenshots/${currentApp}/${currentApp} ${currentImageIndex}.png`;
+  img.src = src;
+  img.alt = `Step ${currentImageIndex}`;
+}
+
+function nextImage() {
+  if (currentImageIndex < screenshotCounts[currentApp]) {
+    currentImageIndex++;
+    updateLightboxImage();
+  }
+}
+
+function prevImage() {
+  if (currentImageIndex > 1) {
+    currentImageIndex--;
+    updateLightboxImage();
+  }
+}
+
+
+// Your original updateSignature function + helpers:
 
 function updateSignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
@@ -54,7 +170,7 @@ function updateSignature() {
   if (scheduleLines.length > 0) {
     workSchedule = `<div>📅 <strong>Workdays:</strong></div>` +
       scheduleLines.map(line => `<div>${line}</div>`).join('');
-}
+  }
 
   document.getElementById('sigDetails').innerHTML = `
     <div><strong>${name}</strong></div>
@@ -64,11 +180,8 @@ function updateSignature() {
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
     <div><span style="font-size: 80%;">📍</span> ${location}</div>
     ${workSchedule}
-`;
-
+  `;
 }
-
-
 
 // Helper to format 24h → 12h time
 function formatTime(time) {
@@ -100,7 +213,6 @@ function collapseDays(days) {
   ranges.push(start === end ? start : `${start}–${end}`);
   return ranges.join(', ');
 }
-
 
 function copySignature() {
   const sigDetails = document.getElementById("sigDetails");
@@ -139,3 +251,9 @@ function copySignature() {
   document.body.removeChild(tempDiv);
 }
 
+// Optional: Attach updateSignature to inputs dynamically (if you don't use oninput inline)
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("input, select").forEach(el => {
+    el.addEventListener("input", updateSignature);
+  });
+});
