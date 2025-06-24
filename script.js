@@ -22,6 +22,10 @@ const appOptions = {
   iphone: [
     { value: "Outlook 365 for iPhone", text: "Outlook for iPhone" },
     { value: "Mail for iPhone", text: "Apple Mail" }
+  ],
+    ipad: [ // 👈 NEW DEVICE
+    { value: "Outlook 365 for iPad", text: "Outlook for iPad" },
+    { value: "Apple Mail for iPad", text: "Apple Mail for iPad" }
   ]
 };
 
@@ -30,7 +34,9 @@ const screenshotCounts = {
   "Outlook 365 for iPhone": 5,
   "Outlook 365 (Desktop) Mac": 6,
   "Apple Mail Mac": 8,
-  "Chrome Outlook 365": 4
+  "Chrome Outlook 365": 4,
+  "Outlook 365 for iPad": 6,     // 👈 NEW
+  "Apple Mail for iPad": 6       // 👈 NEW
 };
 
 let currentImageIndex = 0;
