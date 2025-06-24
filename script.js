@@ -178,7 +178,7 @@ function updateSignature() {
     <div>${campusText}</div><br>
     <div><span style="font-size: 80%;">📞</span> ${phone}</div>
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
-    <div><span style="font-size: 80%;">📍</span> ${location}</div>
+    <div><span style="font-size: 80%;">📍</span> ${location}</div><br>
     ${workSchedule}
   `;
 }
