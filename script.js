@@ -138,7 +138,7 @@ function updateSignature() {
   const campus = document.getElementById('campus').value.trim();
   const phone = document.getElementById('phone').value || 'Phone';
   const email = document.getElementById('email').value || 'email@example.com';
-  const location = document.getElementById('location').value || 'Your Address';
+  const location = campus ? `${campus} Office` : '';
   const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
 
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -218,7 +218,6 @@ function updateSignature() {
   document.getElementById('sigDetails').innerHTML = `
     <div><strong>${name}</strong></div>
     <div><em>${role}</em></div>
-    <div>${campusText}</div><br>
     <div><span style="font-size: 80%;">📞</span> ${phone}</div>
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
     <div><span style="font-size: 80%;">📍</span> ${location}</div>
