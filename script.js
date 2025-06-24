@@ -123,6 +123,9 @@ function prevImage() {
   }
 }
 
+
+// Your original updateSignature function + helpers:
+
 function updateSignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
   const role = document.getElementById('role').value || 'Your Role';
@@ -133,7 +136,7 @@ function updateSignature() {
   const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
 
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
-  const dayMap = {};
+  const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
 
   days.forEach(day => {
     const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
@@ -155,7 +158,7 @@ function updateSignature() {
   const scheduleLines = [];
 
   for (const [timeRange, groupedDays] of Object.entries(dayMap)) {
-    scheduleLines.push(`${collapseDays(groupedDays)}: ${timeRange}`);
+    scheduleLines.push(`${groupedDays.join(', ')}: ${timeRange}`);
   }
 
   const sundayChecked = document.getElementById('SundayServices')?.checked;
@@ -175,11 +178,12 @@ function updateSignature() {
     <div>${campusText}</div><br>
     <div><span style="font-size: 80%;">📞</span> ${phone}</div>
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
-    <div><span style="font-size: 80%;">📍</span> ${location}</div><br>
+    <div><span style="font-size: 80%;">📍</span> ${location}</div>
     ${workSchedule}
   `;
 }
 
+// Helper to format 24h → 12h time
 function formatTime(time) {
   if (!time) return '';
   const [hour, minute] = time.split(":").map(Number);
@@ -188,35 +192,24 @@ function formatTime(time) {
   return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
 }
 
+// Collapse day sequences (e.g., Mon–Wed, Fri)
 function collapseDays(days) {
-  const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const dayMap = {
-    Mon: 'Monday',
-    Tue: 'Tuesday',
-    Wed: 'Wednesday',
-    Thu: 'Thursday',
-    Fri: 'Friday',
-    Sat: 'Saturday',
-    Sun: 'Sunday'
-  };
-
-  const fullDays = days.map(d => dayMap[d]);
-  fullDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+  const order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  days.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 
   const ranges = [];
-  let start = fullDays[0];
-  let end = fullDays[0];
+  let start = days[0];
+  let end = days[0];
 
-  for (let i = 1; i < fullDays.length; i++) {
-    const current = fullDays[i];
-    if (dayOrder.indexOf(current) === dayOrder.indexOf(end) + 1) {
+  for (let i = 1; i < days.length; i++) {
+    const current = days[i];
+    if (order.indexOf(current) === order.indexOf(end) + 1) {
       end = current;
     } else {
       ranges.push(start === end ? start : `${start}–${end}`);
       start = end = current;
     }
   }
-
   ranges.push(start === end ? start : `${start}–${end}`);
   return ranges.join(', ');
 }
@@ -255,6 +248,8 @@ function copySignature() {
   document.body.removeChild(tempDiv);
 }
 
+
+// Optional: Attach updateSignature to inputs dynamically (if you don't use oninput inline)
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("input, select").forEach(el => {
     el.addEventListener("input", updateSignature);
