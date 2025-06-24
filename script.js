@@ -123,9 +123,6 @@ function prevImage() {
   }
 }
 
-
-// Your original updateSignature function + helpers:
-
 function updateSignature() {
   const name = document.getElementById('fullName').value || 'Your Name';
   const role = document.getElementById('role').value || 'Your Role';
@@ -136,7 +133,7 @@ function updateSignature() {
   const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
 
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
-  const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
+  const dayMap = {};
 
   days.forEach(day => {
     const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
@@ -158,7 +155,7 @@ function updateSignature() {
   const scheduleLines = [];
 
   for (const [timeRange, groupedDays] of Object.entries(dayMap)) {
-    scheduleLines.push(`${groupedDays.join(', ')}: ${timeRange}`);
+    scheduleLines.push(`${collapseDays(groupedDays)}: ${timeRange}`);
   }
 
   const sundayChecked = document.getElementById('SundayServices')?.checked;
@@ -183,7 +180,6 @@ function updateSignature() {
   `;
 }
 
-// Helper to format 24h → 12h time
 function formatTime(time) {
   if (!time) return '';
   const [hour, minute] = time.split(":").map(Number);
@@ -191,6 +187,7 @@ function formatTime(time) {
   const h = hour % 12 || 12;
   return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
 }
+
 function collapseDays(days) {
   const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const dayMap = {
@@ -203,7 +200,6 @@ function collapseDays(days) {
     Sun: 'Sunday'
   };
 
-  // Convert abbreviations to full names
   const fullDays = days.map(d => dayMap[d]);
   fullDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
 
@@ -224,12 +220,6 @@ function collapseDays(days) {
   ranges.push(start === end ? start : `${start}–${end}`);
   return ranges.join(', ');
 }
-
-
-  ranges.push(start === end ? start : `${start}–${end}`);
-  return ranges.join(', ');
-}
-
 
 function copySignature() {
   const sigDetails = document.getElementById("sigDetails");
@@ -265,8 +255,6 @@ function copySignature() {
   document.body.removeChild(tempDiv);
 }
 
-
-// Optional: Attach updateSignature to inputs dynamically (if you don't use oninput inline)
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("input, select").forEach(el => {
     el.addEventListener("input", updateSignature);
