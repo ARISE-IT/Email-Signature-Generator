@@ -216,7 +216,7 @@ function updateSignature() {
     <div><span style="font-size: 80%;">📞</span> ${phone}</div>
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
     <div><span style="font-size: 80%;">📍</span> ${location}</div>
-    ${workSchedule}
+    ${workSchedule}<br>
   `;
 }
 
