@@ -191,28 +191,40 @@ function formatTime(time) {
   const h = hour % 12 || 12;
   return `${h}:${minute.toString().padStart(2, '0')} ${ampm}`;
 }
-
-// Collapse day sequences (e.g., Mon–Wed, Fri)
 function collapseDays(days) {
-  const order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  days.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const dayMap = {
+    Mon: 'Monday',
+    Tue: 'Tuesday',
+    Wed: 'Wednesday',
+    Thu: 'Thursday',
+    Fri: 'Friday',
+    Sat: 'Saturday',
+    Sun: 'Sunday'
+  };
+
+  // Convert abbreviations to full names
+  const fullDays = days.map(d => dayMap[d]);
+  fullDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
 
   const ranges = [];
-  let start = days[0];
-  let end = days[0];
+  let start = fullDays[0];
+  let end = fullDays[0];
 
-  for (let i = 1; i < days.length; i++) {
-    const current = days[i];
-    if (order.indexOf(current) === order.indexOf(end) + 1) {
+  for (let i = 1; i < fullDays.length; i++) {
+    const current = fullDays[i];
+    if (dayOrder.indexOf(current) === dayOrder.indexOf(end) + 1) {
       end = current;
     } else {
       ranges.push(start === end ? start : `${start}–${end}`);
       start = end = current;
     }
   }
+
   ranges.push(start === end ? start : `${start}–${end}`);
   return ranges.join(', ');
 }
+
 
 function copySignature() {
   const sigDetails = document.getElementById("sigDetails");
