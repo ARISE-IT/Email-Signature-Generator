@@ -106,7 +106,7 @@ input[type="text"], input[type="email"], input[type="time"], input[type="passwor
 
 .sig-logo img {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
 }
 #copyBtn {
