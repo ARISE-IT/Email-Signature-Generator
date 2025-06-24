@@ -135,8 +135,8 @@ function updateSignature() {
   const location = document.getElementById('location').value || 'Your Address';
   const campusText = campus ? `${campus}` : '<span style="display:inline-block; height: 1em;"></span>';
 
-  const days = ['Mon','Tue','Wed','Thu','Fri','Sat'];
-  const dayMap = {}; // e.g., { '9:00 AM – 5:00 PM': ['Mon', 'Tue'] }
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayMap = {}; // Group by time range: { '9:00 AM – 5:00 PM': ['Mon', 'Tue', 'Wed'] }
 
   days.forEach(day => {
     const checkbox = document.querySelector(`input[type="checkbox"][value="${day}"]`);
@@ -155,10 +155,47 @@ function updateSignature() {
     }
   });
 
+  const dayFullNames = {
+    Mon: 'Monday',
+    Tue: 'Tuesday',
+    Wed: 'Wednesday',
+    Thu: 'Thursday',
+    Fri: 'Friday',
+    Sat: 'Saturday',
+    Sun: 'Sunday'
+  };
+
+  const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  function collapseDayRanges(dayAbbrList) {
+    const fullDays = dayAbbrList.map(d => dayFullNames[d]);
+    fullDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+
+    const ranges = [];
+    let start = fullDays[0];
+    let end = fullDays[0];
+
+    for (let i = 1; i < fullDays.length; i++) {
+      const current = fullDays[i];
+      if (dayOrder.indexOf(current) === dayOrder.indexOf(end) + 1) {
+        end = current;
+      } else {
+        ranges.push(start === end ? start : `${start}–${end}`);
+        start = end = current;
+      }
+    }
+
+    ranges.push(start === end ? start : `${start}–${end}`);
+    return ranges;
+  }
+
   const scheduleLines = [];
 
   for (const [timeRange, groupedDays] of Object.entries(dayMap)) {
-    scheduleLines.push(`${groupedDays.join(', ')}: ${timeRange}`);
+    const collapsed = collapseDayRanges(groupedDays);
+    collapsed.forEach(group => {
+      scheduleLines.push(`${group}: ${timeRange}`);
+    });
   }
 
   const sundayChecked = document.getElementById('SundayServices')?.checked;
@@ -182,6 +219,7 @@ function updateSignature() {
     ${workSchedule}
   `;
 }
+
 
 // Helper to format 24h → 12h time
 function formatTime(time) {
