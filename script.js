@@ -217,7 +217,7 @@ function updateSignature() {
 
   document.getElementById('sigDetails').innerHTML = `
     <div><strong>${name}</strong></div>
-    <div><em>${role}</em></div>
+    <div><em>${role}</em></div><br>
     <div><span style="font-size: 80%;">📞</span> ${phone}</div>
     <div><span style="font-size: 80%;">📧</span> ${email}</div>
     <div><span style="font-size: 80%;">📍</span> ${location}</div>
