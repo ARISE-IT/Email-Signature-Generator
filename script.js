@@ -226,6 +226,11 @@ function collapseDays(days) {
 }
 
 
+  ranges.push(start === end ? start : `${start}–${end}`);
+  return ranges.join(', ');
+}
+
+
 function copySignature() {
   const sigDetails = document.getElementById("sigDetails");
   const sigLogo = document.querySelector(".sig-logo");
